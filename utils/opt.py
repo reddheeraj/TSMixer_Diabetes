@@ -14,9 +14,9 @@ class Options:
 
         # general options
         self.parser.add_argument("--data_dir", type=str, default="./data")
-        self.parser.add_argument("--left_len", type=int, default=24)
-        self.parser.add_argument("--missing_len", type=int, default=6)
-        self.parser.add_argument("--patient", type=str, default="559")
+        self.parser.add_argument("--example_len", type=int, default=24)
+        self.parser.add_argument("--prediction_len", type=int, default=6)
+        self.parser.add_argument("--patient_id", type=str, default="559")
         self.parser.add_argument("--ckpt", type=str, default="./checkpoint/",
                                  help="The directory (folder) to save trained models.")
 
@@ -29,21 +29,14 @@ class Options:
                                  help="If true, use transfer learning; if false, train on personal data only.")
 
         # model options
-        self.parser.add_argument("--num_layers", type=int, default=3)
-        self.parser.add_argument("--d_model", type=int, default=128)
-        self.parser.add_argument("--heads", type=int, default=4)
-        self.parser.add_argument("--d_ff", type=int, default=512)
-        self.parser.add_argument("--dropout", type=float, default=0.1)
-        self.parser.add_argument("--attention_dropout", type=float, default=0.1)
+        self.parser.add_argument("--input_channels", type=int, default=4)
+        self.parser.add_argument("--output_channels", type=int, default=1)
+        
 
         # training option
-        self.parser.add_argument('--pre_lr', type=float, default=0.0015) # 7,9,11,15
-        self.parser.add_argument('--pre_epoch', type=int, default=10)
-        self.parser.add_argument('--ft_lr', type=float, default=0.00005)
-        self.parser.add_argument('--epoch', type=int, default=10)
-        self.parser.add_argument('--decay_factor', type=float, default=0.5)
-        self.parser.add_argument('--decay_patience', type=int, default=1)
-        self.parser.add_argument('--batch_size', type=int, default=16)
+        self.parser.add_argument('--lr', type=float, default=0.007)
+        self.parser.add_argument('--num_epochs', type=int, default=20)
+        self.parser.add_argument('--batch_size', type=int, default=32)
 
     def print(self):
         print("\n==================Options=================")
